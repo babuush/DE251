@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookmarks</title>
+    <title>File Selector</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,71 +11,121 @@
             margin: 0;
             padding: 0;
         }
-
         .container {
             width: 80%;
             margin: auto;
             max-width: 1200px;
         }
-
-        .file-system {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .folder {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .folder:hover {
-            background-color: #f0f0f0;
-        }
-
-        .folder a {
-            display: block;
-            text-decoration: none;
-            color: #333;
-            margin: 5px 0;
-        }
-
-        .folder a:hover {
-            color: #007BFF;
-        }
-
-        .folder-icon {
-            font-size: 2em;
-            color: #007BFF;
-        }
-
         h1 {
             text-align: center;
             margin: 20px 0;
         }
+        .folder-select {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .folder-select select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .file-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .file-item {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .file-item:hover {
+            background-color: #e6e6e6;
+            transform: scale(1.05);
+        }
+        .file-item a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .file-icon {
+            font-size: 3em;
+            color: #007BFF;
+        }
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .file-item a:hover .file-icon {
+            color: #0056b3;
+        }
+        .file-item a:hover .file-name {
+            color: #0056b3;
+        }
     </style>
 </head>
-
 <body>
     <div class="container">
-        <h1>My Bookmarks</h1>
-        <div class="file-system">
-            <div class="folder">
-                <div class="folder-icon">📁</div>
-                <a href="lab/Lab01_HTML/">Lab 1</a>
-                <a href="">-</a>
-            </div>
-
+        <h1>Select a File</h1>
+        <div class="folder-select">
+            <select id="folderSelect" onchange="updateFileList()">
+                <option value="">Select a folder...</option>
+                <option value="Lab01_HTML">Lab 1</option>
+                <option value="folder2">-</option>
+                <option value="folder3">-</option>
+                <!-- Add more folders here -->
+            </select>
         </div>
+        <div class="file-list" id="fileList">
+            <!-- Files will be displayed here -->
+        </div>
+    </div>
+    
+    <script>
+        const files = {
+            'Lab01_HTML': ['00_test.html', '01_title_body.html', '02_format_text.html', '03_links.html', '04_table.html', '05_mypage.html', 'cindella_cast.html', 'cinderella1.html', 'cinderella2.htm', 'enhaned_nfl_standings.html', 'nfl_standings.html'],
+            'folder2': ['-', '-'],
+            'folder3': ['-', '-']
+        };
 
-    </div>
-    </div>
+        function updateFileList() {
+            const folder = document.getElementById('folderSelect').value;
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            if (folder) {
+                files[folder].forEach(file => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <a href="lab/${folder}/${file}">
+                            <div class="file-icon">📄</div>
+                            <div class="file-name">${file}</div>
+                        </a>
+                    `;
+                    fileList.appendChild(fileItem);
+                });
+            }
+        }
+    </script>
 </body>
-
 </html>
