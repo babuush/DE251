@@ -5,20 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #myCanvas {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            background-color: #ffffff;
+        }
+    </style>
     <script>
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext('2d');
-        var x = 50;
-        var y = 90;
-        context.font = "50px Georgia";
-        context.lineWidth = 3;
-        context.strokeStyle = 'green';
-        context.strokeText('Good Morning!', x, y);
+        window.onload = function() {
+            const canvas = document.getElementById('myCanvas');
+            const context = canvas.getContext('2d');
+
+            context.font = "24px Arial";
+            context.lineWidth = 2;
+            context.strokeStyle = '#333';
+
+            // Draw text lines
+            context.strokeText('Name: Thanapat', 20, 50);
+            context.strokeText('Surname: Piyamassakul', 20, 100);
+            context.strokeText('Nickname: Japan', 20, 150);
+        }
     </script>
 </head>
 
 <body>
-    <canvas id="myCanvas" width="378" height="200"></canvas>
+    <canvas id="myCanvas" width="600" height="200"></canvas>
 </body>
 
 </html>
