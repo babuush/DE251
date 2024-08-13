@@ -5,15 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
-    <video width="400" height="350" poster="video/rabbit.jpg" controls>
-        <source src="video/animation.mp4" type="video/mp4" />
-        <source src="video/animation.webm" type="video/webm" />
-        <source src="video/animation.ogg" type="video/ogg" />
-        Your browser does not support the embedded HTML5 video element.
-    </video>
+    <div class="container">
+        <video poster="video/rabbit.jpg" controls>
+            <source src="video/animation.mp4" type="video/mp4" />
+            <source src="video/animation.webm" type="video/webm" />
+            <source src="video/animation.ogg" type="video/ogg" />
+            Your browser does not support the embedded HTML5 video element.
+        </video>
+    </div>
 </body>
 
 </html>
