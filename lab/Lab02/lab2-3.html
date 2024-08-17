@@ -77,12 +77,18 @@
 <div class="container">
     <h1>Registration Details:</h1>
     <form action="script.php" method="post">
-        <input type="text" name="name" placeholder="Name"> <br>
-        <input type="date" name="date"> <br>
-        <input type="email" name="email" placeholder="Enter email"> <br>
-        <label for="photo">Select your photo:</label>
+        <label>
+            <input type="text" name="name" placeholder="Name">
+        </label> <br>
+        <label>
+            <input type="date" name="date">
+        </label> <br>
+        <label>
+            <input type="email" name="email" placeholder="Enter email">
+        </label> <br>
+        <label>Select your photo:</label>
         <input type="file" name="photo"> <br>
-        <textarea name="address" id="" cols="30" rows="10" placeholder="Address"></textarea> <br>
+        <label for=""></label><textarea name="address" id="" cols="30" rows="10" placeholder="Address"></textarea> <br>
         <input type="submit" name="submit-btn" value="register">
     </form>
 </div>
