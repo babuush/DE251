@@ -11,26 +11,31 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             width: 80%;
             margin: auto;
             max-width: 1200px;
         }
+
         h1 {
             text-align: center;
             margin: 20px 0;
         }
+
         .folder-select {
             display: flex;
             justify-content: center;
             margin: 20px 0;
         }
+
         .folder-select select {
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         .file-list {
             display: flex;
             flex-wrap: wrap;
@@ -38,6 +43,7 @@
             justify-content: center;
             margin-top: 20px;
         }
+
         .file-item {
             background-color: #fff;
             border-radius: 5px;
@@ -54,10 +60,12 @@
             justify-content: center;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
+
         .file-item:hover {
             background-color: #e6e6e6;
             transform: scale(1.05);
         }
+
         .file-item a {
             text-decoration: none;
             color: inherit;
@@ -67,65 +75,69 @@
             width: 100%;
             height: 100%;
         }
+
         .file-icon {
             font-size: 3em;
             color: #007BFF;
         }
+
         .file-name {
             margin-top: 10px;
             font-size: 14px;
             font-weight: bold;
         }
+
         .file-item a:hover .file-icon {
             color: #0056b3;
         }
+
         .file-item a:hover .file-name {
             color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Select a Lab</h1>
-        <div class="folder-select">
-            <select id="folderSelect" onchange="updateFileList()">
-                <option value="">Select a Lab</option>
-                <option value="Lab01_HTML">Lab 1</option>
-                <option value="Lab02">Lab 2</option>
-                <option value="folder3">-</option>
-                <!-- Add more folders here -->
-            </select>
-        </div>
-        <div class="file-list" id="fileList">
-            <!-- Files will be displayed here -->
-        </div>
+<div class="container">
+    <h1>Select a Lab</h1>
+    <div class="folder-select">
+        <select id="folderSelect" onchange="updateFileList()">
+            <option value="">Select a Lab</option>
+            <option value="Lab01_HTML">Lab 1</option>
+            <option value="Lab02">Lab 2</option>
+            <option value="folder3">-</option>
+            <!-- Add more folders here -->
+        </select>
     </div>
-    
-    <script>
-        const files = {
-            'Lab01_HTML': ['00_test.html', '01_title_body.html', '02_format_text.html', '03_links.html', '04_table.html', '05_mypage.html', 'cinderella_cast.html', 'cinderella1.html', 'cinderella2.htm', 'enhaned_nfl_standings.html', 'nfl_standings.html'],
-            'Lab02': ['lab2.html', 'lab2-1.html', 'lab2-2.html', 'lab2-3.html'],
-            'folder3': ['-', '-']
-        };
+    <div class="file-list" id="fileList">
+        <!-- Files will be displayed here -->
+    </div>
+</div>
 
-        function updateFileList() {
-            const folder = document.getElementById('folderSelect').value;
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = '';
-            if (folder) {
-                files[folder].forEach(file => {
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'file-item';
-                    fileItem.innerHTML = `
+<script>
+    const files = {
+        'Lab01_HTML': ['00_test.html', '01_title_body.html', '02_format_text.html', '03_links.html', '04_table.html', '05_mypage.html', 'cinderella_cast.html', 'cinderella1.html', 'cinderella2.htm', 'enhaned_nfl_standings.html', 'nfl_standings.html'],
+        'Lab02': ['lab2.html', 'lab2-1.html', 'lab2-2.html', 'lab2-3.html'],
+        'folder3': ['-', '-']
+    };
+
+    function updateFileList() {
+        const folder = document.getElementById('folderSelect').value;
+        const fileList = document.getElementById('fileList');
+        fileList.innerHTML = '';
+        if (folder) {
+            files[folder].forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
                         <a href="lab/${folder}/${file}">
                             <div class="file-icon">📄</div>
                             <div class="file-name">${file}</div>
                         </a>
                     `;
-                    fileList.appendChild(fileItem);
-                });
-            }
+                fileList.appendChild(fileItem);
+            });
         }
-    </script>
+    }
+</script>
 </body>
 </html>
