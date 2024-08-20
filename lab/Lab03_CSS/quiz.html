@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>quiz</title>
+    <style>
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        legend {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<form action="save.php" method="post">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <fieldset>
+        <legend>Age:</legend>
+        <input type="radio" id="age1" name="age" value="<18">
+        <label for="age1">< 18</label>
+        <input type="radio" id="age2" name="age" value="19-35">
+        <label for="age2">19-35</label>
+        <input type="radio" id="age3" name="age" value="36-48">
+        <label for="age3">36-48</label>
+        <input type="radio" id="age4" name="age" value=">49">
+        <label for="age4">> 49</label><br><br>
+    </fieldset>
+
+    <label for="profession">Profession:</label>
+    <input type="text" id="profession" name="profession" required><br><br>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+        <option value="Thailand">Thailand</option>
+        <option value="Malaysia">Malaysia</option>
+        <option value="Hong Kong">Hong Kong</option>
+        <option value="China">China</option>
+    </select><br><br>
+
+    <fieldset>
+        <legend>Interests:</legend>
+        <input type="checkbox" id="interest1" name="interests[]" value="Photography">
+        <label for="interest1">Photography</label>
+        <input type="checkbox" id="interest2" name="interests[]" value="Music">
+        <label for="interest2">Music</label>
+        <input type="checkbox" id="interest3" name="interests[]" value="Cinema">
+        <label for="interest3">Cinema</label>
+        <input type="checkbox" id="interest4" name="interests[]" value="Computers">
+        <label for="interest4">Computers</label><br><br>
+    </fieldset>
+
+    <label for="find_us">How did you find out about us?</label><br>
+    <textarea id="find_us" name="find_us" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
