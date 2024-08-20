@@ -1,5 +1,18 @@
 p {
     text-align: center;
     color: #115fa1;
-    font-family: sans-serif;
+
+}
+
+body {
+    background-color: lightblue;
+    text-align: center;
+}
+
+h1 {
+    color: navy;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
 }
