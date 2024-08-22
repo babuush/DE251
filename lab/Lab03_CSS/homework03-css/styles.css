@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
-    background-color: #f8f8f8;
-    font-family: Basier Circle, Anuphan, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    background-color: #f1e8dd;
+    font-family: Anuphan, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
     color: #333;
     margin: 0;
     padding: 0;
@@ -13,21 +13,24 @@ body {
 }
 
 .highlight-de {
-    color: #d35400; /* Data Engineering Student */
+    color: #df5d2f; /* Data Engineering Student */
 }
 
 .highlight-cs {
-    color: #2980b9; /* Computer Science */
+    color: #3c7adf; /* Computer Science */
 }
-
+.highlight-data {
+    color: #449388;
+}
 /* Headings */
 h1, h2 {
     margin: 0 auto;
+    font-weight: bold;
 }
 
 h1 {
     font-size: 48px;
-    font-weight: normal;
+
     color: #2c3e50;
     margin-top: 50px;
     margin-bottom: 20px;
@@ -35,7 +38,7 @@ h1 {
 
 h2 {
     font-size: 28px;
-    font-weight: normal;
+
     color: #2c3e50;
     margin-bottom: 30px;
 }
@@ -47,6 +50,7 @@ p {
     max-width: 700px;
     margin: 0 auto 40px;
     color: #555;
+
 }
 
 a {
@@ -90,17 +94,22 @@ li a:hover {
     color: white;
 }
 
-/* Image */
 img {
     border-radius: 10px;
     display: block;
-    margin: 40px auto;
-    max-width: 100%;
+    margin: 40px 0 40px 20px;
+    max-width: 400px;
     height: auto;
+    float: right;
+}
+
+section {
+    margin: 25px 0;
 }
 
 /* Footer */
 footer {
+    clear: both;
     text-align: center;
     padding: 20px 0;
     background-color: #f0f0f0;
