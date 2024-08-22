@@ -12,6 +12,15 @@ body {
 
 }
 
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
 .highlight-de {
     color: #df5d2f; /* Data Engineering Student */
 }
@@ -19,9 +28,11 @@ body {
 .highlight-cs {
     color: #3c7adf; /* Computer Science */
 }
+
 .highlight-data {
     color: #449388;
 }
+
 /* Headings */
 h1, h2 {
     margin: 0 auto;
@@ -30,7 +41,6 @@ h1, h2 {
 
 h1 {
     font-size: 48px;
-
     color: #2c3e50;
     margin-top: 50px;
     margin-bottom: 20px;
