@@ -12,6 +12,14 @@ body {
 
 }
 
+.highlight-de {
+    color: #d35400; /* Data Engineering Student */
+}
+
+.highlight-cs {
+    color: #2980b9; /* Computer Science */
+}
+
 /* Headings */
 h1, h2 {
     margin: 0 auto;
@@ -41,16 +49,17 @@ p {
     color: #555;
 }
 
-/* Links */
 a {
-    color: #2c3e50;
+    color: #e74c3c;
+    font-weight: bold;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 a:hover {
-    border-color: #2c3e50;
+    border-color: #e74c3c;
+    color: #c0392b;
 }
 
 /* Navigation Menu */
