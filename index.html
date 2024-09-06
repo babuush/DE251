@@ -13,7 +13,7 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
             max-width: 1200px;
         }
@@ -21,12 +21,15 @@
         h1 {
             text-align: center;
             margin: 20px 0;
+            font-size: 2rem;
         }
 
         .folder-select {
             display: flex;
             justify-content: center;
             margin: 20px 0;
+            align-items: center;
+            gap: 10px;
         }
 
         .folder-select select {
@@ -49,31 +52,19 @@
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 150px;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
             cursor: pointer;
-            text-decoration: none;
             color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .file-item:hover {
             background-color: #e6e6e6;
             transform: scale(1.05);
-        }
-
-        .file-item a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            height: 100%;
         }
 
         .file-icon {
@@ -87,12 +78,30 @@
             font-weight: bold;
         }
 
-        .file-item a:hover .file-icon {
-            color: #0056b3;
+        .no-files-message {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-top: 20px;
         }
 
-        .file-item a:hover .file-name {
-            color: #0056b3;
+        @media (max-width: 768px) {
+            .file-item {
+                width: 100px;
+                padding: 10px;
+            }
+
+            .file-icon {
+                font-size: 2.5em;
+            }
+
+            .file-name {
+                font-size: 12px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -100,19 +109,19 @@
 <div class="container">
     <h1>Select a Lab</h1>
     <div class="folder-select">
-        <label for="folderSelect">choose one :)</label><br><br><br>
-        <select id="folderSelect" onchange="updateFileList()">
-            <option value="">Select a Lab</option>
-            <option value="Lab01_HTML">Lab 1</option>
-            <option value="Lab02">Lab 2</option>
-            <option value="Lab03_CSS">Lab 3</option>
-            <option value="Lab04_Bootstrap">Lab 4</option>
-            <!-- Add more folders here -->
+        <label for="folderSelect">Choose a Lab:</label>
+        <select id="folderSelect" onchange="updateFileList()" aria-label="Select a Lab Folder">
+            <option value="">-- Select a Lab --</option>
+            <option value="Lab01_HTML">Lab 1: HTML Basics</option>
+            <option value="Lab02">Lab 2: Intermediate HTML</option>
+            <option value="Lab03_CSS">Lab 3: CSS Fundamentals</option>
+            <option value="Lab04_Bootstrap">Lab 4: Bootstrap</option>
         </select>
     </div>
     <div class="file-list" id="fileList">
         <!-- Files will be displayed here -->
     </div>
+    <div id="noFilesMessage" class="no-files-message" style="display:none;">No files available for this lab.</div>
 </div>
 
 <script>
@@ -126,19 +135,32 @@
     function updateFileList() {
         const folder = document.getElementById('folderSelect').value;
         const fileList = document.getElementById('fileList');
+        const noFilesMessage = document.getElementById('noFilesMessage');
+
         fileList.innerHTML = '';
+        noFilesMessage.style.display = 'none';
+
         if (folder) {
-            files[folder].forEach(file => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `
-                        <a href="lab/${folder}/${file}">
+            const fileArray = files[folder];
+
+            if (fileArray.length === 0) {
+                noFilesMessage.style.display = 'block';
+            } else {
+                fileArray.forEach(file => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <a href="lab/${folder}/${file}" aria-label="Open ${file}">
                             <div class="file-icon">📄</div>
                             <div class="file-name">${file}</div>
                         </a>
                     `;
-                fileList.appendChild(fileItem);
-            });
+                    fileList.appendChild(fileItem);
+                });
+            }
+        } else {
+            noFilesMessage.style.display = 'block';
+            noFilesMessage.innerText = 'Please select a lab to view its files.';
         }
     }
 </script>
