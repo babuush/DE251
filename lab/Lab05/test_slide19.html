@@ -5,8 +5,10 @@
     <title>Change text</title>
 
     <script type="text/javascript">
+        alert("Hello");
+        const p1 = document.getElementById("p1");
+
         function ChangeText() {
-            const p1 = document.getElementById("p1");
             if (p1.innerHTML === "Hello world!") {
                 p1.innerHTML = "New text!";
                 document.body.style.backgroundColor = "white"
