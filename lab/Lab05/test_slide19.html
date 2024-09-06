@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change text</title>
+
+    <script type="text/javascript">
+        function ChangeText() {
+            const p1 = document.getElementById("p1");
+            if (p1.innerHTML === "Hello world!") {
+                p1.innerHTML = "New text!";
+                document.body.style.backgroundColor = "white"
+
+            } else {
+                p1.innerHTML = "Hello world!";
+                document.body.style.backgroundColor = "blue"
+            }
+        }
+    </script>
+</head>
+<body>
+<p id="p1">Hello world!</p>
+<input type="button" value="Change Text" onclick="ChangeText()"/>
+</body>
+</html>
