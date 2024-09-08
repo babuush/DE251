@@ -2,34 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To do list</title>
+    <title>To-do list</title>
     <!-- linking bootstrap to you HTML -->
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="custom.css" rel="stylesheet">
-    <script src="application.js"></script>
+
 </head>
 <body>
 <div class='container'>
-    <div class="row">
-        <div class="col-xs-12">
-            <!-- Title -->
-            <h2>To-do list</h2>
-            <div class="row">
-                <!-- The div where we will display to do list items -->
-                <div id="todo-list" class="col-xs-12">
-                </div>
-                <div class="col-xs-4">
-                    <!-- The input element for users to add items -->
-                    <label for="task-detail"></label>
-                    <input id="task-detail" class="form-control" placeholder="Task">
-                    <!-- A button for adding tasks -->
-                    <button id="addtask-button" type="button" class="btn btn-sm btn-primary">Add
-                        Task
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>To-Do List</h1>
+    <label for="taskInput"></label>
+    <input type="text" id="taskInput" placeholder="Add a task">
+    <button id="addTask">Add</button>
+    <ul id="taskList"></ul>
 </div>
+<script src="application.js"></script>
 </body>
 </html>
