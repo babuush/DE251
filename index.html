@@ -1,115 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Selector</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
         .container {
-            width: 90%;
-            margin: auto;
-            max-width: 1200px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         h1 {
             text-align: center;
-            margin: 20px 0;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #222;
         }
 
         .folder-select {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 30px;
         }
 
         .folder-select select {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .folder-select select:focus {
+            border-color: #0056b3;
         }
 
         .file-list {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
+            padding: 0;
         }
 
         .file-item {
             background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 150px;
-            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .file-item:hover {
-            background-color: #e6e6e6;
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
 
         .file-icon {
-            font-size: 3em;
+            font-size: 3.5em;
             color: #007BFF;
         }
 
         .file-name {
-            margin-top: 10px;
-            font-size: 14px;
+            margin-top: 12px;
+            font-size: 1.1rem;
             font-weight: bold;
         }
 
         .no-files-message {
             text-align: center;
-            color: #666;
             font-size: 1.2rem;
-            margin-top: 20px;
+            color: #555;
+            margin-top: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
             .file-item {
-                width: 100px;
-                padding: 10px;
+                padding: 15px;
             }
 
             .file-icon {
-                font-size: 2.5em;
+                font-size: 3em;
             }
 
             .file-name {
-                font-size: 12px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
 <div class="container">
     <h1>Select a Lab</h1>
     <div class="folder-select">
-        <label for="folderSelect">Choose a Lab:</label>
+        <label for="folderSelect" class="visually-hidden">Choose a Lab:</label>
         <select id="folderSelect" onchange="updateFileList()" aria-label="Select a Lab Folder">
             <option value="">-- Select a Lab --</option>
             <option value="Lab01_HTML">Lab 1: HTML Basics</option>
@@ -152,11 +159,11 @@
                     const fileItem = document.createElement('div');
                     fileItem.className = 'file-item';
                     fileItem.innerHTML = `
-                        <a href="lab/${folder}/${file}" aria-label="Open ${file}">
-                            <div class="file-icon">📄</div>
-                            <div class="file-name">${file}</div>
-                        </a>
-                    `;
+                            <a href="lab/${folder}/${file}" aria-label="Open ${file}">
+                                <div class="file-icon">📄</div>
+                                <div class="file-name">${file}</div>
+                            </a>
+                        `;
                     fileList.appendChild(fileItem);
                 });
             }
@@ -167,4 +174,5 @@
     }
 </script>
 </body>
+
 </html>
