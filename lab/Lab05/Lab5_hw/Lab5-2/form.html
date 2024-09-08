@@ -1,10 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('img/66102010169.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.getElementById("firstname").focus();
+        };
+
+        function calculateWeeklyPay(hourlyRate, hours) {
+            // Validate inputs
+            if (isNaN(hourlyRate) || hourlyRate <= 0 || !Array.isArray(hours)) {
+                return 0;
+            }
+
+            // Handle empty or invalid hours
+            const validHours = hours.map(hour => {
+                if (isNaN(hour) || hour < 0) {
+                    return 0;
+                }
+                return hour;
+            });
+
+            // Calculate weekly pay
+            return hourlyRate * validHours.reduce((acc, cur) => acc + cur, 0);
+        }
+
+        function validateForm() {
+            const MAX_HOURS_PER_DAY = 8;
+            const firstName = document.getElementById("firstname").value;
+            const lastName = document.getElementById("lastname").value;
+            const hourlyRate = parseFloat(document.getElementById("hours").value);
+            const dailyHours = [parseFloat(document.getElementById("mon").value),
+                parseFloat(document.getElementById("tue").value),
+                parseFloat(document.getElementById("wed").value),
+                parseFloat(document.getElementById("thu").value),
+                parseFloat(document.getElementById("fri").value),
+                parseFloat(document.getElementById("sat").value),
+                parseFloat(document.getElementById("sun").value)];
+
+            // Check for empty fields
+            if (!firstName || !lastName || isNaN(hourlyRate)) {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+
+            // Validate hourly rate
+            if (hourlyRate <= 0) {
+                alert("Please enter a valid hourly rate (must be greater than 0).");
+                document.getElementById("hours").focus();
+                return false;
+            }
+
+            // Validate daily hours (all checks in one loop)
+            for (let i = 0; i < dailyHours.length; i++) {
+                const hours = dailyHours[i];
+                if (isNaN(hours) || hours < 0 || hours > MAX_HOURS_PER_DAY) {
+                    alert("Please enter valid daily hours (cannot be negative or exceed " + MAX_HOURS_PER_DAY + ").");
+                    return false;
+                }
+            }
+
+            // Calculate weekly pay
+            const weeklyPay = calculateWeeklyPay(hourlyRate, dailyHours);
+
+            document.getElementById("fullName").value = firstName + ' ' + lastName;
+            document.getElementById("Weekly").value = "$" + weeklyPay.toFixed(2);
+            return true;
+        }
+    </script>
 </head>
-<body>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
+    <h1 class="text-3xl font-bold text-center mb-4">My Sweet Bakery</h1>
+    <h2 class="text-2xl text-center mb-6">Employees Payroll</h2>
+
+    <form name="myForm" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <label for="firstname" class="block text-sm font-medium text-gray-700">First Name</label>
+                <input type="text" id="firstname" name="firstname1"
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                       required>
+            </div>
+            <div>
+                <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name</label>
+                <input type="text" id="lastname" name="lastname1"
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                       required>
+            </div>
+            <div>
+                <label for="hours" class="block text-sm font-medium text-gray-700">Hourly Salary</label>
+                <input type="number" id="hours" name="hours" value="0.00" min="0"
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                       placeholder="0.00" required>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-medium">Weekly Hours</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4 mt-4">
+                <div>
+                    <label for="mon" class="block text-sm font-medium text-gray-700">Mon</label>
+                    <input type="number" id="mon" name="mon" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+                <div>
+                    <label for="tue" class="block text-sm font-medium text-gray-700">Tue</label>
+                    <input type="number" id="tue" name="tue" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+                <div>
+                    <label for="wed" class="block text-sm font-medium text-gray-700">Wed</label>
+                    <input type="number" id="wed" name="wed" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+                <div>
+                    <label for="thu" class="block text-sm font-medium text-gray-700">Thu</label>
+                    <input type="number" id="thu" name="thu" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+                <div>
+                    <label for="fri" class="block text-sm font-medium text-gray-700">Fri</label>
+                    <input type="number" id="fri" name="fri" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+                <div>
+                    <label for="sat" class="block text-sm font-medium text-gray-700">Sat</label>
+                    <input type="number" id="sat" name="sat" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+                <div>
+                    <label for="sun" class="block text-sm font-medium text-gray-700">Sun</label>
+                    <input type="number" id="sun" name="sun" value="0.00" min="0"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="0.00">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex space-x-4 mt-4">
+            <button type="button"
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                    onclick="validateForm()">Process
+            </button>
+            <button type="reset"
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                Reset
+            </button>
+        </div>
+
+        <div class="mt-6">
+            <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input id="fullName"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+        </div>
+
+        <div class="mt-4">
+            <label for="Weekly" class="block text-sm font-medium text-gray-700">Weekly Earnings</label>
+            <input id="Weekly"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
+        </div>
+    </form>
+</div>
 
 </body>
+
 </html>
