@@ -2,20 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-do list</title>
-    <!-- linking bootstrap to you HTML -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+    <!-- Linking Bootstrap -->
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="custom.css" rel="stylesheet">
-
 </head>
 <body>
-<div class='container'>
-    <h1>To-Do List</h1>
-    <label for="taskInput"></label>
-    <input type="text" id="taskInput" placeholder="Add a task">
-    <button id="addTask">Add</button>
-    <ul id="taskList"></ul>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">To-Do List</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <label for="taskInput"></label>
+                <input type="text" id="taskInput" class="form-control"
+                       placeholder="Add a task">
+                <div class="input-group-append">
+                    <button id="addTask" class="btn btn-primary">Add Task</button>
+                </div>
+            </div>
+            <ul id="taskList" class="list-group"></ul>
+        </div>
+    </div>
 </div>
+
+<!-- JS scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="application.js"></script>
 </body>
 </html>
