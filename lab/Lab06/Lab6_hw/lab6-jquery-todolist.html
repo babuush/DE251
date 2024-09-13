@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>jQuery To-Do list</title>
+    <style>
+        li.cleared {
+            text-decoration: line-through;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#addTask").click(function () {
+                let inputValue = $('#taskInput').val();
+                if (inputValue) {
+                    $("#taskList").append($("<li></li>").text(inputValue));
+                    $("#taskInput").val("");
+                }
+            })
+
+            $("#taskList").on("click", "li", function () {
+                $(this).toggleClass('cleared');
+            });
+
+            $("#clearTask").click(function () {
+                $(".cleared").remove();
+            });
+        });
+    </script>
 </head>
 <body>
+<div>
+    <h1>To-Do List</h1>
+    <div>
+        <label for="taskInput"></label>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <div>
+            <button id="addTask">Add</button>
+            <button id="clearTask">Clear Complete Task</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+</div>
 
 </body>
 </html>
