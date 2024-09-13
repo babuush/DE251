@@ -2,47 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>jQuery To-Do list</title>
+    <title>jQuery To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         li.cleared {
             text-decoration: line-through;
+            color: gray;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
         $(function () {
+            const loadTasks = () => {
+                let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                savedTasks.forEach(task => {
+                    let taskElement = $("<li></li>").text(task.text);
+                    if (task.completed) taskElement.addClass("cleared");
+                    $("#taskList").append(taskElement);
+                });
+            };
+
+            const saveTasks = () => {
+                let tasks = [];
+                $("#taskList li").each(function () {
+                    tasks.push({
+                        text: $(this).text(),
+                        completed: $(this).hasClass("cleared")
+                    });
+                });
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+            };
+
+            loadTasks();
+
+            // Add new task
             $("#addTask").on("click", function () {
                 let inputValue = $('#taskInput').val();
                 if (inputValue) {
-                    $("#taskList").append($("<li></li>").text(inputValue));
+                    let newTask = $("<li></li>").text(inputValue);
+                    $("#taskList").append(newTask);
                     $("#taskInput").val("");
+                    saveTasks();
                 }
-            })
+            });
 
             $("#taskList").on("click", "li", function () {
-                $(this).toggleClass('cleared');
+                $(this).toggleClass("cleared");
+                saveTasks();
             });
 
             $("#clearTask").on("click", function () {
                 $(".cleared").remove();
+                saveTasks();
             });
         });
     </script>
 </head>
-<body>
-<div>
-    <h1>To-Do List</h1>
-    <div>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-sm w-full">
+    <h1 class="text-2xl font-bold mb-4 text-center">To-Do List</h1>
+    <div class="mb-4">
         <label for="taskInput"></label>
-        <input type="text" id="taskInput" placeholder="Enter a task">
-        <div>
-            <button id="addTask">Add</button>
-            <button id="clearTask">Clear Complete Task</button>
-        </div>
-        <ul id="taskList"></ul>
+        <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter a task"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
     </div>
+    <div class="flex justify-between mb-4">
+        <button
+                id="addTask"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Add
+        </button>
+        <button
+                id="clearTask"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Clear Complete Tasks
+        </button>
+    </div>
+    <ul id="taskList" class="list-disc pl-5"></ul>
 </div>
-
 </body>
 </html>
