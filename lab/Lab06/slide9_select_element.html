@@ -13,8 +13,13 @@
             $("#show").click(function () {
                     $("p").show();
                 }
-            )
-            ;
+            );
+            $("#hide-apple").click(function () {
+                $("li#apple").hide();
+            });
+            $("#hide-phone-brands").click(function () {
+                $("ul#phone-brands li:first-child").hide();
+            });
         });
     </script>
 </head>
@@ -24,7 +29,29 @@
     laudantium natus quibusdam quisquam similique temporibus vel voluptatibus! Aliquam ex quam reprehenderit.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis obcaecati ratione similique? Dignissimos labore
     nemo nesciunt saepe! Aperiam, autem dolor earum eligendi error fugiat illo in modi, tempore, unde voluptatibus!</p>
-<button id="hide" type="button">Hide all the paragraphs</button>
+<button id="hide" type="button"
+        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    Hide all the paragraphs
+</button>
 <button id="show" type="button">Show all the paragraphs</button>
+<ol>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+</ol>
+<ul>
+    <li id="apple">🍎</li>
+    <li>🍌🍌</li>
+    <li>🍒🍒</li>
+</ul>
+<button id="hide-apple">Hide Apple</button>
+<ul id="phone-brands">
+    <li>Apple</li>
+    <li>Samsung</li>
+    <li>OPPO</li>
+</ul>
+<button id="hide-phone-brands">Hide First Child</button>
 </body>
 </html>
