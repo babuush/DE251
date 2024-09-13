@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slide9</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#hide").click(function () {
+                $("p").hide();
+            });
+            $("#show").click(function () {
+                    $("p").show();
+                }
+            )
+            ;
+        });
+    </script>
+</head>
+<body>
+<h1>jQuery Example</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, animi at atque cumque dicta expedita illo impedit, iure
+    laudantium natus quibusdam quisquam similique temporibus vel voluptatibus! Aliquam ex quam reprehenderit.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis obcaecati ratione similique? Dignissimos labore
+    nemo nesciunt saepe! Aperiam, autem dolor earum eligendi error fugiat illo in modi, tempore, unde voluptatibus!</p>
+<button id="hide">Hide all the paragraphs</button>
+<button id="show">Show all the paragraphs</button>
+</body>
+</html>
