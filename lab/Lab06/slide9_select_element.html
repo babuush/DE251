@@ -23,6 +23,11 @@
             $("p").click(function () {
                 $(this).fadeOut(500);
             });
+            $("p#last-para").hover(function () {
+                alert("IN")
+            }, function () {
+                alert("OUT")
+            });
         });
     </script>
 </head>
@@ -32,6 +37,9 @@
     laudantium natus quibusdam quisquam similique temporibus vel voluptatibus! Aliquam ex quam reprehenderit.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis obcaecati ratione similique? Dignissimos labore
     nemo nesciunt saepe! Aperiam, autem dolor earum eligendi error fugiat illo in modi, tempore, unde voluptatibus!</p>
+<p id="last-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut culpa doloribus ea fuga illo
+    illum laboriosam maiores modi nobis porro praesentium qui, quo, soluta tempora temporibus unde veritatis
+    voluptatem.</p>
 <button id="hide" type="button"
         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
     Hide all the paragraphs
