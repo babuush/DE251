@@ -20,20 +20,22 @@
             $("#hide-phone-brands").click(function () {
                 $("ul#phone-brands li:first-child").hide();
             });
-            $("p").click(function () {
-                $(this).fadeOut(500);
-            });
             $("p#last-para").hover(function () {
+                $(this).fadeOut(500);
                 alert("IN")
             }, function () {
                 alert("OUT")
+            });
+            $("p#first-para").click(function () {
+                $(this).css("color", "red").slideUp(2000).slideDown(2000)
             });
         });
     </script>
 </head>
 <body class="text-center">
 <h1>jQuery Example</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, animi at atque cumque dicta expedita illo impedit, iure
+<p id="first-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, animi at atque cumque dicta expedita
+    illo impedit, iure
     laudantium natus quibusdam quisquam similique temporibus vel voluptatibus! Aliquam ex quam reprehenderit.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis obcaecati ratione similique? Dignissimos labore
     nemo nesciunt saepe! Aperiam, autem dolor earum eligendi error fugiat illo in modi, tempore, unde voluptatibus!</p>
