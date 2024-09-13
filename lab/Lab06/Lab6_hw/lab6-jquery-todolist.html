@@ -11,8 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-            $("#addTask").click(function () {
+        $(function () {
+            $("#addTask").on("click", function () {
                 let inputValue = $('#taskInput').val();
                 if (inputValue) {
                     $("#taskList").append($("<li></li>").text(inputValue));
@@ -24,7 +24,7 @@
                 $(this).toggleClass('cleared');
             });
 
-            $("#clearTask").click(function () {
+            $("#clearTask").on("click", function () {
                 $(".cleared").remove();
             });
         });
