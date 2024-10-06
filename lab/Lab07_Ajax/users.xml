@@ -1,0 +1,14 @@
+<users>
+    <user>
+        <id>1</id>
+        <name>Alex</name>
+    </user>
+    <user>
+        <id>2</id>
+        <name>Bobby</name>
+    </user>
+    <user>
+        <id>3</id>
+        <name>Waraporn</name>
+    </user>
+</users>
