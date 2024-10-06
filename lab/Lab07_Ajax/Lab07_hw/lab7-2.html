@@ -42,7 +42,7 @@
                         let company = cds[i].getElementsByTagName("COMPANY")[0].childNodes[0].nodeValue;
                         let price = cds[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue;
                         let year = cds[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue;
-                        table += "<tr><td>" + artist + "</td><td>" + title + "</td></tr>";
+                        table += `<tr><td>${artist}</td><td>${title}</td><td>${country}</td><td>${company}</td><td>${price}</td><td>${year}</td></tr>`;
                     }
 
                     table += "</table>";
