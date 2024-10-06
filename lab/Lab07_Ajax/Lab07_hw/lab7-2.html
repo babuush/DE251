@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>xml fetching</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffc2d1;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #9dcaeb;
+        }
+    </style>
+    <script>
+        function loadXMLDoc() {
+            let xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    let xmlDoc = xmlhttp.responseXML;
+                    let cds = xmlDoc.getElementsByTagName("CD");
+                    let table = "<table><tr><th>Artist</th><th>Title</th><th>COUNTRY</th><th>COMPANY</th><th>PRICE</th><th>YEAR</th></tr>";
+
+                    for (let i = 0; i < cds.length; i++) {
+                        let artist = cds[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue;
+                        let title = cds[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+                        let country = cds[i].getElementsByTagName("COUNTRY")[0].childNodes[0].nodeValue;
+                        let company = cds[i].getElementsByTagName("COMPANY")[0].childNodes[0].nodeValue;
+                        let price = cds[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue;
+                        let year = cds[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue;
+                        table += "<tr><td>" + artist + "</td><td>" + title + "</td></tr>";
+                    }
+
+                    table += "</table>";
+                    document.getElementById("cd-table").innerHTML = table;
+                }
+            }
+            xmlhttp.open("GET", "cd_catalog.xml", true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 <body>
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadXMLDoc()">Get my CD collection</button>
+<div id="cd-table"></div>
+
 
 </body>
 </html>
